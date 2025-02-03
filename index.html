@@ -8,19 +8,18 @@
     <title>QR Code AR</title>
 </head>
 <body>
-    <a-scene embedded arjs="sourceType: webcam;">
-        <!-- Marcador baseado no QR Code -->
-        <a-marker type="pattern" url="./pattern-qr-code.patt">
-            <!-- Exibir a imagem quando o QR Code for detectado -->
+    <a-scene vr-mode-ui="enabled: false" embedded arjs="debugUIEnabled: false;">
+          <a-marker present="pattern" url="./pattern-qr-code.patt"> 
             <a-image 
-                src="https://images.pexels.com/photos/30157758/pexels-photo-30157758/free-photo-of-xicaras-de-cafe-elegantes-com-design-de-passaros-na-mesa.jpeg"
-                position="0 0.5 0"
-                width="1" 
-                height="1">
-            </a-image>
-        </a-marker>
-
-        <a-entity camera></a-entity>
-    </a-scene>
+              width="2"
+              height="2" 
+              src="https://media.istockphoto.com/id/517188688/pt/foto/paisagem-de-montanha.jpg?s=612x612&w=0&k=20&c=uFGUrUT6gA8FrTWhE10YYzngWPlDLssKxJiDs1Qw2Qs="
+              rotation="0 0 0"
+              position="0 0 0"
+            ></a-image>
+          </a-marker> 
+  
+          <a-entity camera></a-entity>
+        </a-scene> 
 </body>
 </html>
