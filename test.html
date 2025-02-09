@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code com Logo Centralizado</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <div id="qrcode-container"></div>
+
+    <script>
+        function generateQRCodeWithLogo(url, logoSrc) {
+            var qrContainer = document.getElementById("qrcode-container");
+            qrContainer.innerHTML = ""; // Limpa antes de gerar
+
+            // Criar um elemento canvas manualmente para garantir que o QR Code seja gerado corretamente
+            var canvas = document.createElement("canvas");
+            var size = 400; // QR Code maior para mais detalhes
+            canvas.width = size;
+            canvas.height = size;
+            qrContainer.appendChild(canvas);
+            var ctx = canvas.getContext("2d");
+
+            var qrCode = new QRCode(document.createElement("div"), {
+                text: url,
+                width: size,
+                height: size,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H // Nível de correção de erro alto
+            });
+
+            setTimeout(() => {
+                var qrCanvas = qrCode._oDrawing._elCanvas;
+                if (!qrCanvas) {
+                    console.error("Falha ao gerar QR Code em Canvas.");
+                    return;
+                }
+
+                ctx.drawImage(qrCanvas, 0, 0, size, size);
+
+                var logo = new Image();
+                logo.src = logoSrc;
+                logo.onload = function () {
+                    var logoSize = size * 0.40; // 25% do tamanho do QR Code (tamanho reduzido)
+                    var x = (size - logoSize) / 2;
+                    var y = (size - logoSize) / 2;
+
+                    // Desenha a logo diretamente no centro
+                    ctx.drawImage(logo, x, y, logoSize, logoSize);
+                };
+            }, 500);
+        }
+
+        // Gerar QR Code com logo
+        generateQRCodeWithLogo("https://jairoevaristo.github.io/index.html", "marker.png");
+    </script>
+
+</body>
+</html>
