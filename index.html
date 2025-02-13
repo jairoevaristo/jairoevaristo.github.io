@@ -8,14 +8,30 @@
     <title>QR Code AR</title>
 </head>
 <body>
-  <a-scene embedded arjs="sourceType: webcam;">
-    <a-marker preset="custom" type="pattern" url="./pattern-qr-code.patt"> 
-        <a-image 
-          src="https://images.pexels.com/photos/30157758/pexels-photo-30157758/free-photo-of-xicaras-de-cafe-elegantes-com-design-de-passaros-na-mesa.jpeg"
-          position="0 0 0"
-          width="1" 
-          height="1">
-      </a-image>
+  <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam;">
+    <!-- <a-assets>
+      <img id="foto" src="https://images.pexels.com/photos/30157758/pexels-photo-30157758/free-photo-of-xicaras-de-cafe-elegantes-com-design-de-passaros-na-mesa.jpeg" />
+    </a-assets> -->
+
+    <a-assets>
+      <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/jairoevaristo/jairoevaristo.github.io/main/models/scene.gltf"></a-asset-item>
+    </a-assets>
+
+    <a-marker preset="custom" type="pattern" url="./pattern-logo.patt"> 
+      <!-- <a-image
+        position="0 0 0"
+        rotation="0 0 0"
+        width="1" 
+        src="#foto"
+        height="1">
+      </a-image> -->
+
+      <a-entity
+                id="animated-model"
+                gltf-model="#animated-asset"
+                scale="0.01 0.01 0.01">
+            </a-entity>
+      
     </a-marker> 
 
     <a-entity camera></a-entity>
